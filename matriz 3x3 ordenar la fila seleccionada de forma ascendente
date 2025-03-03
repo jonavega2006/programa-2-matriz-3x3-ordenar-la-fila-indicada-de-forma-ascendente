@@ -1,0 +1,44 @@
+def bubble_sort(fila):
+    """Ordena una fila de la matriz en orden ascendente usando Bubble Sort"""
+    n = len(fila)
+    for i in range(n - 1):
+        for j in range(n - 1 - i):
+            if fila[j] > fila[j + 1]:
+                fila[j], fila[j + 1] = fila[j + 1], fila[j]
+
+
+matriz = []
+
+print("🔢 Ingresa los números de la matriz (3x3):")
+
+for i in range(3):
+    while True:
+        try:
+            fila = list(map(int, input(f"✏ Ingrese 3 números para la FILA {i + 1}, separados por espacio: ").split()))
+            if len(fila) == 3:
+                matriz.append(fila)
+                break
+            else:
+                print("⚠ ERROR: Debes ingresar exactamente 3 números.")
+        except ValueError:
+            print("⚠ ERROR: Ingresa solo números separados por espacio.")
+
+print("\n📋 Matriz ingresada:")
+for fila in matriz:
+    print(fila)
+
+while True:
+    try:
+        fila_a_ordenar = int(input("\n🔢 Ingresa el número de la FILA que deseas ordenar (1, 2 o 3): ")) - 1
+        if 0 <= fila_a_ordenar < len(matriz):
+            break
+        else:
+            print("⚠ ERROR: Ingresa un número válido entre 1 y 3.")
+    except ValueError:
+        print("⚠ ERROR: Ingresa un número.")
+
+bubble_sort(matriz[fila_a_ordenar])
+
+print("\n✅ Matriz con la fila ordenada:")
+for fila in matriz:
+    print(fila)
